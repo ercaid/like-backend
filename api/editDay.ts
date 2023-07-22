@@ -25,7 +25,19 @@ module.exports = async (req: VercelRequest, res: VercelResponse) => {
   const body = req.body;
 
   const db = await client.db("like");
-  await db.collection("days").updateOne({ id: body.id }, body);
+  await db.collection("days").updateOne(
+    { id: body.id },
+    {
+      $set: {
+        id: body.id,
+        background: body.background,
+        description: body.description,
+        date: body.date,
+        emoji: body.emoji,
+        accurate: body.accurate,
+      },
+    }
+  );
 
   res.status(200).json({
     code: 0,
