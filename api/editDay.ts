@@ -1,4 +1,4 @@
-// 添加倒数日
+// 编辑倒数日
 
 import { VercelRequest, VercelResponse } from "@vercel/node";
 
@@ -9,7 +9,9 @@ module.exports = async (req: VercelRequest, res: VercelResponse) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
 
   const db = await client.db("like");
-  var result = await db.collection("days").insertOne(req.body);
+  var result = await db
+    .collection("days")
+    .updateOne({ id: req.body.id }, req.body.content);
 
   res.status(200).json({
     code: 0,
