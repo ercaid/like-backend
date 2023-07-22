@@ -5,7 +5,7 @@ import { VercelRequest, VercelResponse } from "@vercel/node";
 import { client } from "../utils/mongodb";
 
 module.exports = async (req: VercelRequest, res: VercelResponse) => {
-  res.setHeader("Access-Control-Allow-Credentials", true);
+  res.setHeader("Access-Control-Allow-Credentials", true as any);
   res.setHeader("Access-Control-Allow-Origin", "*");
   // another common pattern
   // res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
