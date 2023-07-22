@@ -8,10 +8,10 @@ module.exports = async (req: VercelRequest, res: VercelResponse) => {
   res.setHeader("Access-Control-Allow-Headers", "*");
   res.setHeader("Access-Control-Allow-Origin", "*");
 
+  const body = JSON.parse(req.body);
+
   const db = await client.db("like");
-  var result = await db
-    .collection("days")
-    .updateOne({ id: req.body.id }, req.body.content);
+  await db.collection("days").updateOne({ id: body.id }, body);
 
   res.status(200).json({
     code: 0,
