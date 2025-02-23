@@ -1,7 +1,7 @@
 // 添加用户数据
 import { VercelRequest, VercelResponse } from "@vercel/node";
 
-import { client } from "../utils/mongodb2";
+import { client } from "../utils/mongodb";
 
 module.exports = async (req: VercelRequest, res: VercelResponse) => {
   if (req.method === "OPTIONS") {
