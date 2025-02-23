@@ -4,6 +4,11 @@ import { VercelRequest, VercelResponse } from "@vercel/node";
 import { client } from "../utils/mongodb2";
 
 module.exports = async (req: VercelRequest, res: VercelResponse) => {
+  if (req.method === "OPTIONS") {
+    res.status(200).end();
+    return;
+  }
+
   const body = req.body;
 
   const db = await client.db("xiaomei");
