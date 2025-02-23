@@ -11,11 +11,17 @@ module.exports = async (req: VercelRequest, res: VercelResponse) => {
 
   const body = req.body;
 
-  const db = await client.db("xiaomei");
-  await db.collection("result").insertOne(body);
-
-  res.status(200).json({
-    code: 0,
-    data: "成功",
-  });
+  try {
+    const db = await client.db("xiaomei");
+    await db.collection("result").insertOne(body);
+    res.status(200).json({
+      code: 0,
+      data: "成功",
+    });
+  } catch (e) {
+    res.status(200).json({
+      code: 1,
+      data: e,
+    });
+  }
 };
